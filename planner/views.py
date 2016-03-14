@@ -8,8 +8,8 @@ from .models import Subject
 
 # Create your views here.
 def dashboard(request):
-	context = dict(context=DashboardContext(subject_list=Subject.objects.all()))
-	return render(request, 'planner/dashboard.html', context)
+	ctx = dict(context=DashboardContext(subject_list=Subject.objects.all()))
+	return render(request, 'planner/dashboard.html', ctx)
 
 class SubjectView(generic.DetailView):
 	model = Subject

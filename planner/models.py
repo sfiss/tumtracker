@@ -27,9 +27,13 @@ class Subject(models.Model):
 	# fields
 	name = models.CharField(max_length=200)
 	ects = models.IntegerField()
-	sem_taken = models.CharField(max_length=6,blank=True,choices=[
-				('','---'), ('WS2015','WS 2015'),('SS2016','SS 2016'),('WS2016','WS 2016'),('SS2017','SS 2017')])
-	area = models.CharField(max_length=4, choices=[(member.value,name + ' (' + member.value + ')') for name, member in SpecializationArea.__members__.items()])
+	grade = models.DecimalField(default=0,max_digits=3, decimal_places=2)
+	sem_taken = models.CharField(max_length=6,blank=True,choices=
+	[('','---'), ('WS2015','WS 2015'),('SS2016','SS 2016'),('WS2016','WS 2016'),('SS2017','SS 2017')]
+	                             )
+	area = models.CharField(max_length=4, choices=
+	[(member.value,name + ' (' + member.value + ')') for name, member in SpecializationArea.__members__.items()]
+	                        )
 
 	def __str__(self):
 		return self.name.capitalize()

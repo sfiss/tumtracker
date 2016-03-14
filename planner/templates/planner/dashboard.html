@@ -1,37 +1,34 @@
-<h1>Welcome to the TumTracker Planning Dashboard</h1>
+{% extends 'planner/base.html' %}
+
+{% block content %}
+<h2>Dashboard</h2>
 
 <fieldset>
-    <legend>Subjects (all)</legend>
-    <ul>
-    {% for subject in context.subjects_all %}
-        <li><a href="{% url 'planner:subject' subject.id %}">{{ subject }}</a></li>
-    {% endfor %}
-    </ul>
+    <legend>Subject Management</legend>
+    <a href="/admin/">Go to admin area...</a>
 </fieldset>
 
 <fieldset>
-    <legend>Subjects (taken)</legend>
-    <ul>
-    {% for subject in context.subjects_taken %}
-        <li><a href="{% url 'planner:subject' subject.id %}">{{ subject }}</a></li>
-    {% endfor %}
-    </ul>
+    <legend>List of subjects</legend>
+    <table>
+        <thead>
+            <tr>
+                <td>Taken</td>
+                <td>Planned</td>
+                <td>Watching</td>
+            </tr>
+        </thead>
+        <tbody>
+    {% for taken, planned, watching in context.combined_subject_list %}
+            <tr>
+                <td>{{ taken.name }} {% if taken %}({{ taken.grade }}) {% endif %}</td>
+                <td>{{ planned.name }}</td>
+                <td>{{ watching.name }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
 </fieldset>
 
-<fieldset>
-    <legend>Subjects (planned)</legend>
-    <ul>
-    {% for subject in context.subjects_planned %}
-        <li><a href="{% url 'planner:subject' subject.id %}">{{ subject }}</a></li>
-    {% endfor %}
-    </ul>
-</fieldset>
-
-<fieldset>
-    <legend>Subjects (watching)</legend>
-    <ul>
-    {% for subject in context.subjects_watching %}
-        <li><a href="{% url 'planner:subject' subject.id %}">{{ subject }}</a></li>
-    {% endfor %}
-    </ul>
-</fieldset>
+{% endblock %}
