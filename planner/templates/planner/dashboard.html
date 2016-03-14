@@ -1,0 +1,37 @@
+<h1>Welcome to the TumTracker Planning Dashboard</h1>
+
+<fieldset>
+    <legend>Subjects (all)</legend>
+    <ul>
+    {% for subject in context.subjects_all %}
+        <li><a href="{% url 'planner:subject' subject.id %}">{{ subject }}</a></li>
+    {% endfor %}
+    </ul>
+</fieldset>
+
+<fieldset>
+    <legend>Subjects (taken)</legend>
+    <ul>
+    {% for subject in context.subjects_taken %}
+        <li><a href="{% url 'planner:subject' subject.id %}">{{ subject }}</a></li>
+    {% endfor %}
+    </ul>
+</fieldset>
+
+<fieldset>
+    <legend>Subjects (planned)</legend>
+    <ul>
+    {% for subject in context.subjects_planned %}
+        <li><a href="{% url 'planner:subject' subject.id %}">{{ subject }}</a></li>
+    {% endfor %}
+    </ul>
+</fieldset>
+
+<fieldset>
+    <legend>Subjects (watching)</legend>
+    <ul>
+    {% for subject in context.subjects_watching %}
+        <li><a href="{% url 'planner:subject' subject.id %}">{{ subject }}</a></li>
+    {% endfor %}
+    </ul>
+</fieldset>
